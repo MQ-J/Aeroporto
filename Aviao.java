@@ -2,12 +2,14 @@ public class Aviao extends Aeronave {
   
   //atributos
   public Passageiro[][] lugares;
+  int fileira, acento;
+  String modelo = super.modelo;
 
   //método construtor - COM ERRO
-  Aviao(String modelo, int fileira, int acento)
-  {
-    super.modelo = modelo;
-  }
+ Aviao.Aviao()
+ {
+
+ }
 
   //demais métodos
   public Passageiro[][] getPassageiro(int fileira, int acento)
