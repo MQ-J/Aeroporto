@@ -4,7 +4,7 @@ public class Aeronave {
   protected String modelo;
 
   //método construtor
-  Aeronave(String modelo)
+  public Aeronave(String modelo)
   {
     this.modelo = modelo;
   }

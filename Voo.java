@@ -6,7 +6,7 @@ public class Voo {
   private String data, hora;
 
   //método construtor
-  Voo(Aviao aeronave, int nro, String data, String hora)
+  public Voo(Aviao aeronave, int nro, String data, String hora)
   {
     this.aeronave = aeronave;
     this.nro = nro;
