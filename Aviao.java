@@ -5,7 +5,7 @@ public class Aviao extends Aeronave {
   int fileiras, assentos;
   String modelo;
 
-  //método construtor - COM ERRO
+  //método construtor
  Aviao(String modelo, int fileiras, int assentos)
  {
    super(modelo);
