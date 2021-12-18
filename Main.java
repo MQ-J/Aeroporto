@@ -7,11 +7,14 @@ public static void main(String[] args) {
 
 }
 public static void menuPrincipal() {
-  System.out.println("Menu Principal");
-  System.out.print("\t1 - Parâmetros do Sistema\n\t2 -Reserva de Passagens\n\t3 - Sair");
-
-  parametroSistema();
-  reservaPassagem();
+  int menu = Integer.parseInt(JOptionPane.showInputDialog("Menu Principal\n\t1 - Parâmetros do Sistema\n\t2 -Reserva de Passagens\n\t3 - Sair"));
+  
+  switch(menu){
+    case 1: parametroSistema(); break;
+    case 2: reservaPassagem(); break;
+    case 3: System.exit(0); break;
+    default: JOptionPane.showMessageDialog(null, "Opção inválida"); menuPrincipal();
+  }
 }
 public static void parametroSistema() {
   System.out.println("Parâmetros do Sistema");
