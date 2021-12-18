@@ -3,7 +3,6 @@ public class Aviao extends Aeronave {
   //atributos
   public Passageiro[][] lugares;
   int fileiras, assentos;
-  String modelo;
 
   //método construtor
  Aviao(String modelo, int fileiras, int assentos)
@@ -13,7 +12,7 @@ public class Aviao extends Aeronave {
  }
 
   //demais métodos
-  public Passageiro[][] getPassageiro(int fileira, int acento)
+  public Passageiro[][] getPassageiro(int fileira, int acentos)
   {
     return lugares;
   }
