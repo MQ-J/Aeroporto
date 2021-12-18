@@ -7,7 +7,7 @@ public class Aviao extends Aeronave {
 	}
 	
 	public void setPassageiro (int fileira, int assento, Passageiro passageiro) {
-		lugares[fileira][assento] = new Passageiro("Maria", "123");
+		lugares[fileira][assento] = passageiro;
 	}
 	
 	public Passageiro getPassageiro(int fileira, int assento) {
