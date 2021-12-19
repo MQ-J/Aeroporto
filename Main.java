@@ -115,29 +115,41 @@ public static void fazerReserva() {
   //passageiro escolhe voo
   int num = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Voo:"));
 
-  //busca voo para ver se há vagas
+  //iterador para percorrer lista de voo
   Iterator<Voo> itr = listaVoo.iterator();
 
-  //mostra todos os aviões - NECESSÁRIO?
+  //pesquisa se há lugar vazio no avião deste voo
+  int lugar = 0;
 	while(itr.hasNext()){
-	  Voo voo =(Voo)itr.next();                   
-	  System.out.println(voo.getNro() + " " + voo.getData() + " " + voo.getHora() + " " + voo.getAeronave().lugares[0][0]);
-  }
+	  Voo voo =(Voo)itr.next();
+    for (int i = 0; i < voo.getAeronave().lugares.length; i++) {
+      for (int j = 0; j < voo.getAeronave().lugares[0].length; j++) {
+        if (voo.getAeronave().lugares[i][j] == null) {
+          lugar++;
+        }
+      }
+    }
+    if (lugar == 0) {
+      JOptionPane.showMessageDialog(null, "Este avião está lotado!");
+    } else {
 
-  //passageiro confirma reserva?
-  String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
-  char menu = '0';
-  if (op.length() == 1) {
-    menu = op.charAt(0);
-  }
+      //passageiro confirma reserva?
+      String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
+      char menu = '0';
+      if (op.length() == 1) {
+        menu = op.charAt(0);
+      }
 
-  //caso sim, programa cria passageiro e reserva lugar
-  switch(menu) {
-    case 'n': case 'N': break;
-    case 's': case 'S':
+      //caso sim, programa cria passageiro e reserva lugar
+      switch(menu) {
+        case 'n': case 'N': break;
+        case 's': case 'S':
     
-    break;
-    default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
+        break;
+        default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
+      }
+
+    }
   }
 }
 
