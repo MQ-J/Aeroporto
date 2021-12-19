@@ -7,6 +7,8 @@ class Main {
 static ArrayList<Aviao> listaAviao = new ArrayList<Aviao>();
 //cria lista de 10 voos
 static ArrayList<Voo> listaVoo = new ArrayList<Voo>(10);
+//cria Arraylist de passageiros
+static ArrayList<Passageiro> listaPassageiro = new ArrayList<Passageiro>();
 
 /*MÉTODO MAIN*/
 public static void main(String[] args) {
@@ -113,6 +115,32 @@ public static void cadastraVoo() {
 /*FUNÇÃO DE FAZER RESERVA*/
 public static void fazerReserva() {
 
+  //passageiro escolhe voo
+  int num = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Voo:"));
+
+  //busca voo para ver se há vagas
+  Iterator<Voo> itr = listaVoo.iterator();
+
+  //mostra todos os aviões - NECESSÁRIO?
+	do {
+	  Voo voo =(Voo)itr.next();                   
+  } while(num == 1);
+
+  //passageiro confirma reserva?
+  String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
+  char menu = '0';
+  if (op.length() == 1) {
+    menu = op.charAt(0);
+  }
+
+  //caso sim, programa cria passageiro e reserva lugar
+  switch(menu) {
+    case 'n': case 'N': break;
+    case 's': case 'S':
+    
+    break;
+    default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
+  }
 }
 
 /*FUNÇÃO DE CONSULTAR LUGAR*/

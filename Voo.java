@@ -15,6 +15,10 @@ public class Voo {
   }
 
   //demais métodos
+  public Aviao getAeronave()
+  {
+    return aeronave;
+  }
   public int getNro()
   {
     return nro;
