@@ -19,13 +19,17 @@ public static void main(String[] args) {
 public static void menuPrincipal() {
 
   //usuário escolhe menu
-  int menu = Integer.parseInt(JOptionPane.showInputDialog("Menu Principal\n\t1 - Parâmetros do Sistema\n\t2 - Reserva de Passagens\n\t3 - Sair"));
+  String op = JOptionPane.showInputDialog("Menu Principal\n\t1 - Parâmetros do Sistema\n\t2 - Reserva de Passagens\n\t3 - Sair");
+  char menu = '0';
+  if (op.length() == 1) {
+    menu = op.charAt(0);
+  }
   
   //opções do menu
   switch(menu){
-    case 1: parametroSistema(); break;
-    case 2: reservaPassagem(); break;
-    case 3: System.exit(0); break;
+    case '1': parametroSistema(); break;
+    case '2': reservaPassagem(); break;
+    case '3': System.exit(0); break;
     default: JOptionPane.showMessageDialog(null, "Opção inválida"); menuPrincipal();
   }
 }
@@ -34,13 +38,17 @@ public static void menuPrincipal() {
 public static void parametroSistema() {
 
   //usuário escolhe menu
-  int menu = Integer.parseInt(JOptionPane.showInputDialog("Parâmetros do Sistema\n\t1 - Cadastrar Aeronave\n\t2 - Cadastrar Voo\n\t3 - Voltar"));
+  String op = JOptionPane.showInputDialog("Parâmetros do Sistema\n\t1 - Cadastrar Aeronave\n\t2 - Cadastrar Voo\n\t3 - Voltar");
+  char menu = '0';
+  if (op.length() == 1) {
+    menu = op.charAt(0);
+  }
 
   //opções do menu
   switch(menu){
-    case 1: cadastraAviao(); parametroSistema(); break;
-    case 2: cadastraVoo(); parametroSistema(); break;
-    case 3: menuPrincipal(); break;
+    case '1': cadastraAviao(); parametroSistema(); break;
+    case '2': cadastraVoo(); parametroSistema(); break;
+    case '3': menuPrincipal(); break;
     default: JOptionPane.showMessageDialog(null, "Opção inválida"); parametroSistema();
   }
 }
@@ -49,14 +57,18 @@ public static void parametroSistema() {
 public static void reservaPassagem() {
 
   //usuário escolhe menu
-  int menu = Integer.parseInt(JOptionPane.showInputDialog("Reserva de Passagens\n\t1 - Fazer reserva\n\t2 - Consultar lugares vazios\n\t3 - Consultar reservas realizadas\n\t4 - Voltar"));
+  String op = JOptionPane.showInputDialog("Reserva de Passagens\n\t1 - Fazer reserva\n\t2 - Consultar lugares vazios\n\t3 - Consultar reservas realizadas\n\t4 - Voltar");
+  char menu = '0';
+  if (op.length() == 1) {
+    menu = op.charAt(0);
+  }
 
   //opções do menu
   switch(menu){
-    case 1: fazerReserva(); reservaPassagem(); break;
-    case 2: consultaLugar(); reservaPassagem(); break;
-    case 3: consultaReserva(); reservaPassagem(); break;
-    case 4: menuPrincipal(); break;
+    case '1': fazerReserva(); reservaPassagem(); break;
+    case '2': consultaLugar(); reservaPassagem(); break;
+    case '3': consultaReserva(); reservaPassagem(); break;
+    case '4': menuPrincipal(); break;
     default: JOptionPane.showMessageDialog(null, "Opção inválida"); reservaPassagem();
   }
 }
