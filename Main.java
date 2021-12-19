@@ -129,6 +129,8 @@ public static void fazerReserva() {
         }
       }
     }
+
+    //avisa caso não haja vagas no voo
     if (lugar == 0) {
       JOptionPane.showMessageDialog(null, "Este avião está lotado!");
     } else {
@@ -144,7 +146,7 @@ public static void fazerReserva() {
       switch(menu) {
         case 'n': case 'N': break;
         case 's': case 'S':
-    
+          //parte onde vai ter o new passageiro reservando lugar
         break;
         default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
       }
