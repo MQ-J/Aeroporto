@@ -2,7 +2,8 @@ public class Aviao extends Aeronave {
 
   //atributos
 	public Passageiro[][] lugares;
-	
+	int fileiras, assentos;
+  
   //método construtor
 	public Aviao (String modelo, int fileiras, int assentos) {
 		super(modelo);
