@@ -18,7 +18,11 @@ static int numVoo = -1;
 /*MÉTODO MAIN*/
 public static void main(String[] args) {
 
-  menuPrincipal();
+  cadastraAviao();
+  cadastraVoo();
+  fazerReserva();
+  consultaReserva();
+  //menuPrincipal();
 
 }
 
@@ -149,7 +153,7 @@ public static void fazerReserva() {
         switch(menu) {
           case 'n': case 'N': break;
           case 's': case 'S':
-          voo.getAeronave().lugares[1][1] = new Passageiro("marcos", "456789");
+          voo.getAeronave().lugares[0][0] = new Passageiro("marcos", "456789");
           break;
           default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
         }
@@ -201,20 +205,17 @@ public static void consultaReserva() {
 	while(itr.hasNext()){
 	  Voo voo =(Voo)itr.next();
     if (voo.getNro() == num) {
-
-      //cria vetor de lugares ocupados
-      String[][] lugar = new String [voo.getAeronave().lugares.length][voo.getAeronave().lugares.length];
-      int i, j;
     
-      //pesquisa quantos lugares estão reservados
-      for (i = 0; i < voo.getAeronave().lugares.length; i++) {
-        for (j = 0; j < voo.getAeronave().lugares.length; j++) {
-          if (voo.getAeronave().lugares[i][j] == null) {
-            lugar[i][j] = "L";
+      //pesquisa quantos lugares estão reservados e vai somando eles em string
+      String numb = " ";
+      for (int i = 0; i < voo.getAeronave().lugares.length; i++) {
+        for (int j = 0; j < voo.getAeronave().lugares.length; j++) {
+          if (voo.getAeronave().lugares[i][j] != null) {
+            numb = numb + "[" + i + "][" + j + "]";
           }
         }
       }
-      JOptionPane.showMessageDialog(null,"O voo de número " + num + " tem os seguintes lugares reservados: " + lugar);
+      JOptionPane.showMessageDialog(null,"O voo de número " + num + " tem os seguintes lugares reservados:\n" + numb);
     }
   }
 }
