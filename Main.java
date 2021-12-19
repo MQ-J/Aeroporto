@@ -10,6 +10,11 @@ static ArrayList<Voo> listaVoo = new ArrayList<Voo>(10);
 //cria Arraylist de passageiros
 static ArrayList<Passageiro> listaPassageiro = new ArrayList<Passageiro>();
 
+//inicializa numeros de aviões
+static int numAviao = -1;
+//inicializa numero de voos
+static int numVoo = -1;
+
 /*MÉTODO MAIN*/
 public static void main(String[] args) {
 
@@ -84,19 +89,9 @@ public static void cadastraAviao() {
   int assentos = Integer.parseInt(JOptionPane.showInputDialog("Digite o número de assentos por fileira:"));
 
   //novo avião é criado
-  listaAviao.add(new Aviao(modelo, fileiras, assentos));
-  
-  //iterador do vetor de avião - NECESSÁRIO?
-  Iterator<Aviao> itr = listaAviao.iterator(); 
-
-  //mostra todos os aviões - NECESSÁRIO?
-	while(itr.hasNext()){
-	  Aviao av =(Aviao)itr.next();                   
-	  System.out.println(av.modelo + " " + av.fileiras + " " + av.assentos);
-  }
-  
-  //aviso de conclusão para o usuário
-  JOptionPane.showMessageDialog(null, "Avião" + modelo + " criado com sucesso.");
+  numAviao++;
+  listaAviao.add(numAviao, new Aviao(modelo, fileiras, assentos));
+  JOptionPane.showMessageDialog(null, "Avião " + listaAviao.get(numAviao).modelo + " criado com sucesso.");
 }
 
 /*FUNÇÃO DE CADASTRAR VOOS*/
@@ -109,7 +104,9 @@ public static void cadastraVoo() {
   String hora = JOptionPane.showInputDialog("Digite a hora do voo:");
 
   //novo voo é criado
-  listaVoo.add(new Voo(listaAviao.get(aviao-1), num, data, hora));
+  numVoo++;
+  listaVoo.add(numVoo,new Voo(listaAviao.get(aviao-1), num, data, hora));
+  JOptionPane.showMessageDialog(null, "Voo " + listaVoo.get(numVoo).getNro() + " criado com sucesso.");
 }
 
 /*FUNÇÃO DE FAZER RESERVA*/
@@ -122,9 +119,10 @@ public static void fazerReserva() {
   Iterator<Voo> itr = listaVoo.iterator();
 
   //mostra todos os aviões - NECESSÁRIO?
-	do {
+	while(itr.hasNext()){
 	  Voo voo =(Voo)itr.next();                   
-  } while(num == 1);
+	  System.out.println(voo.getNro() + " " + voo.getData() + " " + voo.getHora() + " " + voo.getAeronave().lugares[0][0]);
+  }
 
   //passageiro confirma reserva?
   String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
