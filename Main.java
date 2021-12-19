@@ -53,9 +53,9 @@ public static void reservaPassagem() {
 
   //opções do menu
   switch(menu){
-    case 1: System.out.println("fazer reserva"); reservaPassagem(); break;
-    case 2: System.out.println("consultar lugares vazios"); reservaPassagem(); break;
-    case 3: System.out.println("consultar reservas realizadas"); reservaPassagem(); break;
+    case 1: fazerReserva(); reservaPassagem(); break;
+    case 2: consultaLugar(); reservaPassagem(); break;
+    case 3: consultaReserva(); reservaPassagem(); break;
     case 4: menuPrincipal(); break;
     default: JOptionPane.showMessageDialog(null, "Opção inválida"); reservaPassagem();
   }
@@ -96,6 +96,21 @@ public static void cadastraVoo() {
 
   //novo voo é criado
   listaVoo.add(new Voo(listaAviao.get(aviao-1), num, data, hora));
+}
+
+/*FUNÇÃO DE FAZER RESERVA*/
+public static void fazerReserva() {
+
+}
+
+/*FUNÇÃO DE CONSULTAR LUGAR*/
+public static void consultaLugar() {
+
+}
+
+/*FUNÇÃO DE CONSULTAR RESERVA*/
+public static void consultaReserva() {
+  
 }
 
 }
