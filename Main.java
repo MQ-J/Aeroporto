@@ -149,7 +149,7 @@ public static void fazerReserva() {
         switch(menu) {
           case 'n': case 'N': break;
           case 's': case 'S':
-          //parte onde vai ter o new passageiro reservando lugar
+          voo.getAeronave().lugares[1][1] = new Passageiro("marcos", "456789");
           break;
           default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
         }
@@ -184,7 +184,7 @@ public static void consultaLugar() {
 
     //apresenta resultado ao usuário
     JOptionPane.showMessageDialog(null, "O Voo de número " + voo.getNro() + " tem " + lugar + " lugares disponível(s)");
-    } break;
+    }
   }
 }
 
@@ -215,7 +215,7 @@ public static void consultaReserva() {
         }
       }
       JOptionPane.showMessageDialog(null,"O voo de número " + num + " tem os seguintes lugares reservados: " + lugar);
-    } break;
+    }
   }
 }
 }
