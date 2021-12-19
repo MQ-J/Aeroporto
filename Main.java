@@ -118,39 +118,42 @@ public static void fazerReserva() {
   //iterador para percorrer lista de voo
   Iterator<Voo> itr = listaVoo.iterator();
 
-  //pesquisa se há lugar vazio no avião deste voo
+  //pesquisa se há voo com este número
   int lugar = 0;
 	while(itr.hasNext()){
 	  Voo voo =(Voo)itr.next();
-    for (int i = 0; i < voo.getAeronave().lugares.length; i++) {
-      for (int j = 0; j < voo.getAeronave().lugares[0].length; j++) {
-        if (voo.getAeronave().lugares[i][j] == null) {
-          lugar++;
+    if (voo.getNro() == num) {
+
+      //pesquisa se há lugares disponíveis no avião deste voo
+      for (int i = 0; i < voo.getAeronave().lugares.length; i++) {
+        for (int j = 0; j < voo.getAeronave().lugares[0].length; j++) {
+          if (voo.getAeronave().lugares[i][j] == null) {
+            lugar++;
+          }
         }
       }
-    }
 
-    //avisa caso não haja vagas no voo
-    if (lugar == 0) {
-      JOptionPane.showMessageDialog(null, "Este avião está lotado!");
-    } else {
+      //avisa caso não haja vagas no voo
+      if (lugar == 0) {
+        JOptionPane.showMessageDialog(null, "Este avião está lotado!");
+      } else {
 
-      //passageiro confirma reserva?
-      String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
-      char menu = '0';
-      if (op.length() == 1) {
-        menu = op.charAt(0);
-      }
+        //passageiro confirma reserva?
+        String op = JOptionPane.showInputDialog("Confirmar reserva?\n\tS - sim\n\tN - não");
+        char menu = '0';
+        if (op.length() == 1) {
+          menu = op.charAt(0);
+        }
 
-      //caso sim, programa cria passageiro e reserva lugar
-      switch(menu) {
-        case 'n': case 'N': break;
-        case 's': case 'S':
+        //caso sim, programa cria passageiro e reserva lugar
+        switch(menu) {
+          case 'n': case 'N': break;
+          case 's': case 'S':
           //parte onde vai ter o new passageiro reservando lugar
-        break;
-        default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
+          break;
+          default: JOptionPane.showMessageDialog(null, "Opção inválida"); fazerReserva();
+        }
       }
-
     }
   }
 }
