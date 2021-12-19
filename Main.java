@@ -158,11 +158,61 @@ public static void fazerReserva() {
 /*FUNÇÃO DE CONSULTAR LUGAR*/
 public static void consultaLugar() {
 
+  //passageiro escolhe voo
+  int num = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Voo:"));
+
+  //iterador para percorrer lista de voo
+  Iterator<Voo> itr = listaVoo.iterator();
+
+  //pesquisa se há voo com este número
+	while(itr.hasNext()){
+	  Voo voo =(Voo)itr.next();
+    if (voo.getNro() == num) {
+
+    //pesquisa quantos lugares estão disponíveis
+    int lugar = 0;
+    for (int i = 0; i < voo.getAeronave().lugares.length; i++) {
+      for (int j = 0; j < voo.getAeronave().lugares[0].length; j++) {
+        if (voo.getAeronave().lugares[i][j] == null) {
+          lugar++;
+        }
+      }
+    }
+
+    //apresenta resultado ao usuário
+    JOptionPane.showMessageDialog(null, "O Voo de número " + voo.getNro() + " tem " + lugar + " lugares disponível(s)");
+    } break;
+  }
 }
 
 /*FUNÇÃO DE CONSULTAR RESERVA*/
 public static void consultaReserva() {
   
-}
+  //passageiro escolhe voo
+  int num = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Voo:"));
 
+  //iterador para percorrer lista de voo
+  Iterator<Voo> itr = listaVoo.iterator();
+
+  //pesquisa se há voo com este número
+	while(itr.hasNext()){
+	  Voo voo =(Voo)itr.next();
+    if (voo.getNro() == num) {
+
+      //cria vetor de lugares ocupados
+      String[][] lugar = new String [voo.getAeronave().lugares.length][voo.getAeronave().lugares.length];
+      int i, j;
+    
+      //pesquisa quantos lugares estão reservados
+      for (i = 0; i < voo.getAeronave().lugares.length; i++) {
+        for (j = 0; j < voo.getAeronave().lugares.length; j++) {
+          if (voo.getAeronave().lugares[i][j] == null) {
+            lugar[i][j] = "L";
+          }
+        }
+      }
+      JOptionPane.showMessageDialog(null,"O voo de número " + num + " tem os seguintes lugares reservados: " + lugar);
+    } break;
+  }
+}
 }
