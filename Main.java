@@ -430,7 +430,6 @@ class Main {
 				else {
 
           //caso o voo escolhido não exista
-					System.out.println("Não achou!");
 					JOptionPane.showMessageDialog(null,"O número do voo não existe.\nPor favor, escolha outro!");
 				}
 			}
