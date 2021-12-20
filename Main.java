@@ -16,24 +16,9 @@ class Main {
 	//inicializa numero de voos
 	static int numVoo = -1;
 
+  /*método principal*/
 	public static void main(String[] args) {
-		/*listaAviao.add(new Aviao("Boeing", 10, 10));
-		listaVoo.add(0,new Voo(listaAviao.get(0), 1010, "15/10/2021", "15:30"));
-		Iterator<Voo> itr = listaVoo.iterator();
-		Voo voo = (Voo)itr.next();
-		voo.getAeronave().setPassageiro((10 - 1), (10 - 1), new Passageiro("Mauricio", "123.123.123.12"));
 		
-		listaAviao.add(new Aviao("Carro", 10, 10));
-		//cadastrarAeronave();
-		
-		listaVoo.add(1,new Voo(listaAviao.get(1), 2020, "15/10/2021", "15:30"));
-		//cadastrarVoo();
-		voo.getAeronave().setPassageiro((9 - 1), (9 - 1), new Passageiro("Maria", "123.153.113.12"));
-		fazerReserva();
-		consultaLugar();
-		consultaReserva();
-		consultaLugar();
-		consultaLugar();*/
 		JOptionPane.showMessageDialog(null, "Seja bem-vindo(a) ao sistema de reserva de passagéns aéreas!");
 		while (true) {
 			int resp = menuPrincipal();
@@ -54,6 +39,7 @@ class Main {
 		}	
 	}
 	
+  //função auxiliar de validação de campos
 	public static int validacao(String respV, int qV) {
 		int respC;
 		int [] menu = {1, 2, 3};
@@ -89,6 +75,7 @@ class Main {
 		return (respC);
 	}
 	
+  /*MENU PRINCIPAL*/
 	public static int menuPrincipal() {
 		int valid, q = 1;
 		while (true) {
@@ -101,6 +88,7 @@ class Main {
 		return(valid);
 	}
 	
+   /*PARÂMETROS DO SISTEMA*/
 	public static void parametroSistema() {
 		int valid, loop = 0, q = 1;
 		while (loop == 0) {
@@ -122,6 +110,7 @@ class Main {
 		}
 	}
 	
+   /*RESERVA DE PASSAGEM*/
 	public static void reservaPassagem() {
 		int valid, loop = 0, q = 2;
 		while (loop == 0) {
@@ -147,9 +136,12 @@ class Main {
 		}
 	}
 	
+   /*cadastro de aeronaves*/
 	public static String cadastrarAeronave() {
 		String modelo;
 		int fileiras, assentos;
+
+    //sequência de cadastro do avião
 		while (true) {
 			try {
 				modelo = JOptionPane.showInputDialog(null, "             Cadastro de aeronave\n\n\nInsira o modelo da aeronave:");
@@ -169,9 +161,13 @@ class Main {
 							return("Cancel");
 						}
 						assentos = Integer.parseInt(sAssentos);
+
+            //cadastra novo avião com os dados escolhios pelo usuário
 						listaAviao.add(new Aviao(modelo, fileiras, assentos));
 						break;
 					}
+
+      //tratando excessões
 			catch (NumberFormatException |  NullPointerException e){
 				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
 					JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
@@ -182,15 +178,19 @@ class Main {
 				 }
 			}
 		}
+
+    //aviso da criação do avião para o usuário
 		numAviao++;
 		JOptionPane.showMessageDialog(null, "Avião " + listaAviao.get(numAviao).modelo + " criado com sucesso.");
 		return("Success");
 	}
+
+  /*cadastro de voos*/
 	public static String cadastrarVoo() {
 		while (true) {
 			try {
-			/*aviao é usado para escolher qual dos aviões cadastrados será usado para o Voo. Segue a ordem de cadastramento. Então, o primeiro avião 
-			cadastrado pelo cadastrarAeronave() é o 1, o segundo cadastrado pelo cadastrarAeronave() é o 2... 
+			/*variável aviao é usada para escolher qual dos aviões cadastrados será usado para o Voo. Segue a ordem de cadastramento. Então, o primeiro avião 
+			cadastrado pelo cadastrarAeronave() é o 0 (que o usuário vê como 1), o segundo cadastrado pelo cadastrarAeronave() é o 1, e assim por diante.
 			 */
 			String sAviao = JOptionPane.showInputDialog(null, "                  Cadastro de voo\n\n\nInsira o número da Aeronave:");
 			if (sAviao == null) {
@@ -199,9 +199,13 @@ class Main {
 			}
 			int aviao = Integer.parseInt(sAviao);
 			int total = listaAviao.size();
+
+      //caso o avião escolhido não exista
 			if (aviao > total) {
 				JOptionPane.showMessageDialog(null, "O avião selecionado não existe.\nLembrando que existem " + listaAviao.size() + " aeronaves cadastradas");
 			}
+
+      //caso o avião escolhido exista, demais dados do voo são escolhidos
 			else {
 				String sNum = (JOptionPane.showInputDialog(null, "                  Cadastro de voo\n\n\nInsira o número do voo:"));
 				if (sNum == null) {
@@ -213,6 +217,8 @@ class Main {
 				if (data.length() > 0) {
 					String hora = JOptionPane.showInputDialog(null, "                   Cadastro de voo\n\n\nInsira a hora do voo:");
 					if (hora.length() > 0) {
+
+            //cadastra novo voo com os dados escolhidos pelo usuário
 						numVoo++;
 						listaVoo.add(numVoo,new Voo(listaAviao.get(aviao-1), num, data, hora));
 						break;
@@ -225,6 +231,8 @@ class Main {
 						
 				}
 			}
+
+      //tratando excessões
 			catch (NumberFormatException |  NullPointerException | IndexOutOfBoundsException  e){
 				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
 					JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
@@ -236,28 +244,31 @@ class Main {
 				 else if (e.getClass().toString().equals("class java.lang.IndexOutOfBoundsException")) {
 					 JOptionPane.showMessageDialog(null, "O avião escolhido não existe.");
 				 }
-			//novo voo é criado
-		
 			}
 		}
+
+    //aviso da criação do voo para o usuário
 		JOptionPane.showMessageDialog(null, "Voo " + listaVoo.get(numVoo).getNro() + " criado com sucesso.");
 		return("Success");
 	}
 
+  /*fazer reserva*/
 	public static String fazerReserva() throws ArrayIndexOutOfBoundsException {
 		
 		
-		//passageiro escolhe voo
+		//inicializa valores e o iterator
 		boolean lugar;
 		int num = 0, fileira = 0, assento = 0;
 		String nome = "", cpf = "";
 		Iterator<Voo> itr = listaVoo.iterator();
 		
+    //caso não hajam voos cadastrados
 		if (itr.hasNext() == false) {
 			JOptionPane.showMessageDialog(null,"Nenhum voo cadastrado!");
 			return("Noo flights");
 		}
 		
+    //sequência de reserva de passagem
 		while (true) {
 			try {
 				nome = JOptionPane.showInputDialog(null, "             Reserva de passagem\n\n\nInsira o nome do passageiro:");
@@ -309,6 +320,8 @@ class Main {
 				}
 				assento = Integer.parseInt(sAssento);
 			}
+
+      //tratando excessões
 			catch (NumberFormatException |  NullPointerException | IndexOutOfBoundsException e){
 				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
 					JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
@@ -326,17 +339,25 @@ class Main {
 						return("Cancel");
 				 }
 			}
+
+      //sequência de verificação da disponibilidade do lugar
 			int len = listaVoo.size();
 			for (int k = 0; k < len; k++) {
 				 Voo voo = listaVoo.get(k);
 				if (voo.getNro() == num) {
 					lugar = voo.getAeronave().verificaLugarOcupado((fileira - 1), (assento - 1));
+
+          //caso o lugar esteja disponível
 					if (lugar == false) {
 						voo.getAeronave().setPassageiro((fileira - 1), (assento - 1), new Passageiro(nome, cpf));
+
+            //lugar é reservado, e aviso é mostrado ao usuário
 						listaPassageiro.add(new Passageiro(nome, cpf));
 						JOptionPane.showMessageDialog(null, String.format("Reserva realizada com sucesso!\n\nFileira:      [%d]\nAssento:  [%d]", fileira, assento));
 						return("Success");
 					}
+
+          //caso o lugar esteja ocupado
 					else if(lugar == true) {
 						JOptionPane.showMessageDialog(null,"O lugar está ocupado.\nPor favor, escolha outro!");
 					}
@@ -349,14 +370,18 @@ class Main {
 		
 		}
 	}
-	/*FUNÇÃO DE CONSULTAR LUGAR*/
+
+	/*consulta lugares disponíveis*/
 	public static String consultaLugar() {
 		Iterator<Voo> itr = listaVoo.iterator();
 		
+    //caso não hajam voos cadastrados
 		if (itr.hasNext() == false) {
 			JOptionPane.showMessageDialog(null,"Nenhum voo cadastrado!");
 			return("Noo flights");
 		}
+
+    //sequência de consulta de lugar
 		while (true) {
 			int num = 0;
 			try {
@@ -367,6 +392,8 @@ class Main {
 				}
 				num = Integer.parseInt(sNum);
 			}
+
+      //tratando excessões
 			catch (NumberFormatException |  NullPointerException | IndexOutOfBoundsException  e){
 				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
 					JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
@@ -381,6 +408,8 @@ class Main {
 					 continue;
 				 }
 			}
+
+      //lê na lista de voos quantos lugares disponíveis existem no voo escolhido
 			int len = listaVoo.size();
 			for (int k = 0; k < len; k++) {
 				 Voo voo = listaVoo.get(k);
@@ -393,10 +422,14 @@ class Main {
 							}
 						}
 					}
+        
+        //mostra ao usuário
 				JOptionPane.showMessageDialog(null, "O Voo de número " + voo.getNro() + " tem " + lugar + " lugares disponível(s)");
 				return("Success");
 				} 
 				else {
+
+          //caso o voo escolhido não exista
 					System.out.println("Não achou!");
 					JOptionPane.showMessageDialog(null,"O número do voo não existe.\nPor favor, escolha outro!");
 				}
@@ -404,15 +437,21 @@ class Main {
 		}
 	}
 	
-	/*FUNÇÃO DE CONSULTAR RESERVA*/
+	/*consulta reservas concluídas*/
 	public static String consultaReserva() {
+
+    //inicializa variiaveis e o iterator
 		 Iterator<Voo> itr = listaVoo.iterator();
 		 int len = listaVoo.size();
 		 int num = 0;
+
+    //caso não existam voos cadastrados
 		if (itr.hasNext() == false) {
 			JOptionPane.showMessageDialog(null,"Nenhum voo cadastrado!");
 			return("Noo flights");
 		}
+
+    //sequência de consulta de reserva
 		while (true) {
 			try {
 				String sNum = (JOptionPane.showInputDialog("Digite o número do Voo:"));
@@ -423,6 +462,8 @@ class Main {
 				num = Integer.parseInt(sNum);
 				
 			}
+
+      //tratando excessões
 			catch (NumberFormatException |  NullPointerException | IndexOutOfBoundsException  e){
 				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
 					JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
@@ -437,13 +478,12 @@ class Main {
 					 continue;
 				 }
 			}
-			 
+			  //contabiliza reservas de lugar
 			  for (int k = 0; k < len; k++) {
 				  Voo voo = listaVoo.get(k);
-				  //Voo voo =(Voo)itr.next();
 				  if (voo.getNro() == num) {
 	
-			      //cria vetor de lugares ocupados
+			      //inicializa índices
 			      int i, j;
 			    
 			    //pesquisa quantos lugares estão reservados
@@ -455,9 +495,13 @@ class Main {
 			          }
 			        }
 			      }
+
+            //mostra matriz de lugares reservados ao usuário
 			      JOptionPane.showMessageDialog(null,"O voo de número " + num + " tem os seguintes lugares reservados: \n\n" + numb);
 			      return("Success");
-			    } 
+			    }
+
+         //caso o voo escolhido não exista
 				 else {
 						JOptionPane.showMessageDialog(null,"O número do voo não existe.\nPor favor, escolha outro!");
 					}
