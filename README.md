@@ -1,6 +1,7 @@
 # Projeto_Semestral_LP1A3
 
 Projeto semestral da matéria de Linguagem de Programação 1, do curso de TADS do IFSP.
+Fiz em dupla, em uns 3 dias, e foi gratificante perceber que, como ambos ja tinham as demais classes, a construção do Main foi simples, sem muita interferência com códigos diferentes.
 ```diff
 ! Detalhes:
 + aplicação de conceitos como herança (entre aeronave e avião) e composição (entre avião e passageiro, voo e avião)
