@@ -1,7 +1,7 @@
 # Projeto_Semestral_LP1A3
 
 Projeto semestral da matéria de Linguagem de Programação 1, do curso de TADS do IFSP.
-Fiz em dupla com o Maurício, em uns 3 dias, e foi gratificante perceber que, como ambos ja tinham as demais classes, a construção do Main foi simples, sem muita interferência com códigos diferentes. A apresentação do projeto está neste link do youtube: http://www.google.com.br
+Fiz em dupla com o Maurício, em uns 3 dias, e foi gratificante perceber que, como ambos ja tinham as demais classes, a construção do Main foi simples, sem muita interferência com códigos diferentes. A apresentação do projeto está neste link do youtube: https://youtu.be/zuT4GQETuC4
 ```diff
 ! Lidamos com criação de objetos em arrayList:
 + listaAviao.add(new Aviao(modelo, fileiras, assentos));
