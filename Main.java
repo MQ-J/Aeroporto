@@ -253,7 +253,7 @@ class Main {
 	}
 
   /*fazer reserva*/
-	public static String fazerReserva() throws ArrayIndexOutOfBoundsException {
+	public static String fazerReserva() {
 		
 		
 		//inicializa valores e o iterator
