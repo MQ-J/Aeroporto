@@ -9,9 +9,9 @@ Fiz em dupla com o Maurício, em uns 3 dias, e foi gratificante perceber que, co
 ```diff
 ! O uso de try catch era um requisito também:
 + catch (NumberFormatException |  NullPointerException e){
-+				 if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
-+				 JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
-+				 }}
++	  if (e.getClass().toString().equals("class java.lang.NumberFormatException")) {
++	  JOptionPane.showMessageDialog(null, "A opção selecionada não é um número!");
++	}}
 ```
 ```diff
 ! Mas a cereja do bolo foi concatenar vários int em uma string em um loop, e somar essas strings em uma string final:
